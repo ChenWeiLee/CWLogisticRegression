@@ -12,6 +12,9 @@
 
 @property (nonatomic, strong) NSMutableArray *thetas;
 @property (nonatomic) double alpha;
+@property (nonatomic) double changeValue;
+@property (nonatomic) int iteration;
+
 @property (nonatomic, strong) NSMutableArray <id <CWPatternProtocol>>*trainingData;
 
 @end
@@ -28,11 +31,12 @@
     return self;
 }
 
-- (instancetype)initWithLearnRange:(double)learnRange
+- (instancetype)initWithLearnRange:(double)learnRange iteration:(int)iteration
 {
     self = [self init];
     if (self) {
         _alpha = learnRange;
+        _iteration = iteration;
     }
     return self;
 }
@@ -62,7 +66,14 @@
     
     _trainingData = [patterns mutableCopy];
     
-    [self updateTheta];
+    for (int iter = 0; iter < _iteration; iter ++) {
+        _changeValue = 0.0;
+        [self updateTheta];
+        
+        if (_changeValue <= 0.0001) {
+            return;
+        }
+    }
 }
 
 - (void)updateTheta
@@ -81,6 +92,7 @@
         }
         updateThetaValue = [[_thetas objectAtIndex:index] doubleValue] - _alpha * allSigmaX;
 
+        _changeValue = fabs(updateThetaValue - [[_thetas objectAtIndex:index] doubleValue]);
         
         [_thetas replaceObjectAtIndex:index withObject:[NSNumber numberWithDouble:updateThetaValue]];
     }

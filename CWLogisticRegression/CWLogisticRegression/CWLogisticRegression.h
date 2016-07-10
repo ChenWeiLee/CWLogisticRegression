@@ -11,7 +11,7 @@
 
 @interface CWLogisticRegression : NSObject
 
-- (instancetype)initWithLearnRange:(double)learnRange;
+- (instancetype)initWithLearnRange:(double)learnRange iteration:(int)iteration;
 - (void)trainingWithPatterns:(NSMutableArray <id<CWPatternProtocol>>*)patterns;
 
 - (double)outputWithData:(id<CWPatternProtocol>)data;
