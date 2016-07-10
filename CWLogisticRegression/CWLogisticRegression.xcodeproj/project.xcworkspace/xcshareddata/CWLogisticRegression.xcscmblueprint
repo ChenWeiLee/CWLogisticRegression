@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4CDB296D53365B76DB1D47744040897D6677A43C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4CDB296D53365B76DB1D47744040897D6677A43C" : 0,
+    "210CB819005DFFF42A87C931152C57B942239155" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C2C6CEBB-E6D9-43B7-A9F0-976ED0E7BAE4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4CDB296D53365B76DB1D47744040897D6677A43C" : "CWLogisticRegression\/",
+    "210CB819005DFFF42A87C931152C57B942239155" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CWLogisticRegression",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CWLogisticRegression\/CWLogisticRegression.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.hq.hiiir:ecs_gropus\/ecs-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "210CB819005DFFF42A87C931152C57B942239155"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ChenWeiLee\/CWLogisticRegression.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4CDB296D53365B76DB1D47744040897D6677A43C"
+    }
+  ]
+}
