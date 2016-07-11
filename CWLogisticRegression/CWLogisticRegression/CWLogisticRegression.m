@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *thetas;
 @property (nonatomic) double alpha;
-@property (nonatomic) double changeValue;
 @property (nonatomic) int iteration;
 
 @property (nonatomic, strong) NSMutableArray <id <CWPatternProtocol>>*trainingData;
@@ -67,10 +66,9 @@
     _trainingData = [patterns mutableCopy];
     
     for (int iter = 0; iter < _iteration; iter ++) {
-        _changeValue = 0.0;
         [self updateTheta];
         
-        if (_changeValue <= 0.0001) {
+        if ([self costValue] <= 0.0001) { //檢查閥值
             return;
         }
     }
@@ -78,25 +76,23 @@
 
 - (void)updateTheta
 {
+    NSMutableArray *newTheta = [NSMutableArray new];
     
     for (int index = 0; index < [_thetas count]; index ++) {
         double updateThetaValue = 0.0;
-        id<CWPatternProtocol> updatePattern = [_trainingData objectAtIndex:index];
         
         double allSigmaX = 0.0;
         for (int i = 0; i < [_trainingData count]; i ++) {
             // Sum All Cost function
             id<CWPatternProtocol> pattern = [_trainingData objectAtIndex:i];
             
-            allSigmaX = allSigmaX + ([self sigmoidWithValue:[self matrixMultiplicationWithMatrix1:_thetas matrix2:[pattern feature]]] - [pattern target]) * [[[updatePattern feature] objectAtIndex:i] doubleValue];
+            allSigmaX = allSigmaX + ([self sigmoidWithValue:[self matrixMultiplicationWithMatrix1:_thetas matrix2:[pattern feature]]] - [pattern target]) * [[[pattern feature] objectAtIndex:index] doubleValue];
         }
         updateThetaValue = [[_thetas objectAtIndex:index] doubleValue] - _alpha * allSigmaX;
 
-        _changeValue = fabs(updateThetaValue - [[_thetas objectAtIndex:index] doubleValue]);
-        
-        [_thetas replaceObjectAtIndex:index withObject:[NSNumber numberWithDouble:updateThetaValue]];
+        [newTheta addObject:[NSNumber numberWithDouble:updateThetaValue]];
     }
-    
+    _thetas = [newTheta mutableCopy];
 }
 
 - (double)matrixMultiplicationWithMatrix1:(NSMutableArray *)matrix1 matrix2:(NSMutableArray *)matrix2
@@ -116,6 +112,20 @@
 - (double)sigmoidWithValue:(double)value
 {
     return 1/(1 + exp(value));
+}
+
+- (double)costValue
+{
+    double costValue = 0.0;
+
+    //Cost function
+    for (int i = 0; i < [_trainingData count]; i ++) {
+        id<CWPatternProtocol> pattern = [_trainingData objectAtIndex:i];
+        
+        costValue = costValue + pow(([self sigmoidWithValue:[self matrixMultiplicationWithMatrix1:_thetas matrix2:[pattern feature]]] - [pattern target]), 2);
+    }
+    
+    return costValue/(2 * [_trainingData count]);
 }
 
 @end
